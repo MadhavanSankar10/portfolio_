@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madhavan S — Mechanical Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #111118;
+    --bg3: #1a1a24;
+    --accent: #00e5ff;
+    --accent2: #7c5cfc;
+    --accent3: #ff6b35;
+    --text: #f0f0f8;
+    --muted: #888899;
+    --border: rgba(255,255,255,0.08);
+    --card: rgba(255,255,255,0.04);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 2.5rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.875rem;
+    font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridMove 20s linear infinite;
+  }
+  @keyframes gridMove {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+  .hero-glow {
+    position: absolute; width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,92,252,0.15) 0%, transparent 70%);
+    top: 50%; left: 50%; transform: translate(-50%, -60%);
+    animation: pulse 6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: translate(-50%,-60%) scale(1); opacity: 0.8; }
+    50% { transform: translate(-50%,-60%) scale(1.1); opacity: 1; }
+  }
+  .hero-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    position: relative;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-name {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    line-height: 1.05;
+    position: relative;
+    animation: fadeUp 0.8s 0.1s ease both;
+    letter-spacing: -0.02em;
+  }
+  .hero-name span {
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-top: 1rem;
+    max-width: 520px;
+    animation: fadeUp 0.8s 0.2s ease both;
+    position: relative;
+  }
+  .hero-cta {
+    margin-top: 2.5rem;
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 0.8s 0.3s ease both;
+    position: relative;
+  }
+  .btn {
+    padding: 0.75rem 1.75rem;
+    border-radius: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #0a0a0f;
+    border: none;
+  }
+  .btn-primary:hover { background: #33eaff; transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .hero-stats {
+    margin-top: 4rem;
+    display: flex; gap: 3rem; justify-content: center;
+    position: relative;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .hero-stat { text-align: center; }
+  .hero-stat-num {
+    font-size: 2rem; font-weight: 700;
+    font-family: 'Space Mono', monospace;
+    color: var(--accent);
+  }
+  .hero-stat-label { font-size: 0.8rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute; bottom: 2rem; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+  .scroll-hint span { font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%,100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1080px; margin: 0 auto; }
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 1rem;
+  }
+  .section-divider {
+    width: 48px; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg2); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; font-size: 1rem; }
+  .about-text p strong { color: var(--text); }
+  .about-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+  .about-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+  .badge {
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    border: 1px solid;
+  }
+  .badge-cyan { color: var(--accent); border-color: rgba(0,229,255,0.3); background: rgba(0,229,255,0.06); }
+  .badge-purple { color: #a78bfa; border-color: rgba(167,139,250,0.3); background: rgba(167,139,250,0.06); }
+  .badge-orange { color: #fb923c; border-color: rgba(251,146,60,0.3); background: rgba(251,146,60,0.06); }
+  .about-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2rem;
+    display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .about-card-row { display: flex; align-items: center; gap: 1rem; }
+  .about-card-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem; flex-shrink: 0;
+  }
+  .about-card-row-text p { font-size: 0.8rem; color: var(--muted); }
+  .about-card-row-text span { font-size: 0.95rem; font-weight: 600; }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 20px; top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+  .timeline-item {
+    padding-left: 60px;
+    margin-bottom: 3rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+  .timeline-dot {
+    position: absolute; left: 12px; top: 4px;
+    width: 17px; height: 17px; border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: var(--bg);
+    box-shadow: 0 0 10px rgba(0,229,255,0.4);
+  }
+  .timeline-current .timeline-dot { background: var(--accent); }
+  .exp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .exp-card:hover { border-color: rgba(0,229,255,0.3); transform: translateX(4px); }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .exp-title { font-size: 1.05rem; font-weight: 600; }
+  .exp-period {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    background: rgba(0,229,255,0.08);
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    border: 1px solid rgba(0,229,255,0.2);
+    white-space: nowrap;
+  }
+  .exp-company { font-size: 0.875rem; color: var(--muted); margin-bottom: 1rem; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .exp-bullets li { font-size: 0.875rem; color: var(--muted); padding-left: 1rem; position: relative; }
+  .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); }
+  .current-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: #0a0a0f;
+    background: var(--accent);
+    padding: 0.15rem 0.5rem;
+    border-radius: 100px;
+    letter-spacing: 0.05em;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--bg2); }
+  .projects-hierarchy { display: flex; flex-direction: column; gap: 1rem; }
+
+/* Horizontal scroll showcase (self-contained, no vertical hijack) */
+.showcase { position: relative; padding: 4rem 0; }
+.showcase-pin {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.showcase-track { display: flex; gap: 1.5rem; padding: 1rem 8vw; will-change: transform; }
+.showcase-card {
+  flex: 0 0 auto;
+  width: clamp(260px, 38vw, 520px);
+  height: clamp(320px, 60vh, 600px);
+  border-radius: 18px;
+  overflow: hidden;
+  background: #111;
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.04);
+  position: relative;
+  transform: translateY(40px) scale(.9);
+  opacity: 0;
+  transition: transform .9s cubic-bezier(.2,.8,.2,1), opacity .9s ease;
+}
+.showcase-card.in { transform: translateY(0) scale(1); opacity: 1; }
+.showcase-card { scroll-snap-align: center; }
+.showcase-card img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 1.2s cubic-bezier(.2,.8,.2,1);
+}
+.showcase-card:hover img { transform: scale(1.06); }
+.showcase-caption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(to top, rgba(0,0,0,.85), rgba(0,0,0,0));
+  color: #fff; font-size: .9rem; letter-spacing: .02em;
+}
+.showcase-header { padding: 0 8vw 1.5rem; }
+.showcase-progress { margin: 1rem 8vw 0; height: 2px; background: rgba(255,255,255,.1); }
+.showcase-progress-bar { height: 100%; background: currentColor; width: 0%; transition: width .1s linear; }
+@media (max-width: 768px) {
+  .showcase-track { padding: 1rem; }
+  .showcase-card { width: 80vw; height: 60vh; opacity: 1; transform: none; }
+  .showcase-header { padding: 0 1rem 1rem; }
+}
+  .project-category {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--card);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .project-category:hover { border-color: rgba(0,229,255,0.25); }
+  .project-category-header {
+    width: 100%;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    font-family: inherit;
+    text-align: left;
+  }
+  .project-category-head-left { display: flex; align-items: center; gap: 1rem; }
+  .project-category-icon {
+    width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.2);
+    font-size: 1.2rem;
+  }
+  .project-category-title { font-size: 1.05rem; font-weight: 600; }
+  .project-category-desc { font-size: 0.8rem; color: var(--muted); margin-top: 0.15rem; }
+  .project-category-count {
+    font-family: 'Space Mono', monospace; font-size: 0.75rem;
+    color: var(--accent); margin-right: 0.75rem;
+  }
+  .project-category-chev { transition: transform 0.25s; color: var(--muted); }
+  .project-category.open .project-category-chev { transform: rotate(90deg); color: var(--accent); }
+  .project-category-items {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease;
+    border-top: 0 solid var(--border);
+  }
+  .project-category.open .project-category-items {
+    max-height: 2000px;
+    border-top-width: 1px;
+  }
+  .project-item {
+    padding: 1.1rem 1.5rem 1.1rem 4.4rem;
+    border-bottom: 1px dashed var(--border);
+    position: relative;
+  }
+  .project-item::before {
+    content: ''; position: absolute;
+    left: 2.1rem; top: 1.6rem;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(0,229,255,0.12);
+  }
+  .project-item:last-child { border-bottom: none; }
+  .project-item-title { font-size: 0.98rem; font-weight: 600; }
+  .project-item-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin: 0.35rem 0 0.6rem; }
+  .project-item-meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+  .project-item-link {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    font-family: 'Space Mono', monospace; font-size: 0.72rem;
+    color: var(--accent); text-decoration: none;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 6px;
+    transition: background 0.2s;
+    margin-right: 0.4rem;
+  }
+  .project-item-link:hover { background: rgba(0,229,255,0.1); }
+  .legacy-project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.2s;
+  }
+  .legacy-project-card.visible { opacity: 1; transform: translateY(0); }
+  .legacy-project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .legacy-project-card:hover::before { opacity: 1; }
+  .legacy-project-card:hover { border-color: rgba(0,229,255,0.3); transform: translateY(-4px); }
+  .project-icon {
+    font-size: 2rem; margin-bottom: 1rem;
+    width: 56px; height: 56px;
+    background: rgba(0,229,255,0.08);
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .project-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .project-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .project-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--accent2);
+    background: rgba(124,92,252,0.1);
+    border: 1px solid rgba(124,92,252,0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .skill-cat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+  .skill-cat-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .skill-pill-group { display: flex; flex-direction: column; gap: 0.6rem; }
+  .skill-pill { display: flex; align-items: center; justify-content: space-between; }
+  .skill-pill-name { font-size: 0.875rem; font-weight: 500; }
+  .skill-bar {
+    width: 120px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px;
+    overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+    width: 0;
+    transition: width 1s ease;
+  }
+
+  /* ── CERTS ── */
+  #certs { background: var(--bg2); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .cert-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: center; gap: 1rem;
+    transition: all 0.2s;
+  }
+  .cert-card:hover { border-color: rgba(124,92,252,0.4); transform: translateY(-2px); }
+  .cert-icon {
+    width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+    background: rgba(124,92,252,0.12); border: 1px solid rgba(124,92,252,0.2);
+    display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+  }
+  .cert-name { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; }
+  .cert-issuer { font-size: 0.78rem; color: var(--muted); }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+  }
+  .contact-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    background: rgba(255,255,255,0.02);
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .contact-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-family: 'Space Mono', monospace;
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    nav { padding: 1rem; }
+    .nav-links { display: none; }
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 1.5rem; }
+  }
+
+  /* ── REVEAL ANIMATION ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── FLOATING PARTICLES ── */
+  .particles {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    width: 2px; height: 2px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatParticle linear infinite;
+  }
+
+  @keyframes floatParticle {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-100px) translateX(30px); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Particles -->
+<div class="particles" id="particles"></div>
+
+<!-- Nav -->
+<nav>
+  <a class="nav-logo" href="#hero">MS_</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-tag">Available for opportunities</div>
+  <h1 class="hero-name">Madhavan <span>S</span></h1>
+  <p class="hero-sub">Mechanical Engineer · CAD/CAE Specialist · Robotics & Automation · NVH Validation</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#contact">Let's connect →</a>
+    <a class="btn btn-ghost" href="#projects">View projects</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">84%</div>
+      <div class="hero-stat-label">University rank</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">1+</div>
+      <div class="hero-stat-label">Year industry exp.</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">5</div>
+      <div class="hero-stat-label">Internships & roles</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">13+</div>
+      <div class="hero-stat-label">Key projects</div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">// 01 — About me</div>
+    <h2 class="section-title">Precision. Systems. Impact.</h2>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>I'm a <strong>Mechanical Engineer (Anna University Rank Holder)</strong> who lives at the intersection of structural design, simulation, and intelligent manufacturing. My work spans <strong>CAD/CAE design, NVH validation, FEA simulation, and robotics</strong> — I thrive where engineering meets problem-solving at scale.</p>
+        <p>Currently a <strong>Graduate Engineer Trainee at Schwing Stetter India</strong>, leading silo design and structural analysis using Solid Edge and STAAD Pro. I've previously validated real-world vehicle NVH performance at <strong>Stellantis (FCA)</strong> and optimized fabrication fixtures at <strong>Wheels India</strong>.</p>
+        <p>A <strong>Siemens Solid Edge Certified Professional</strong> with hands-on expertise across ANSYS Fluent, NX, AutoCAD, and more — I build things that work, not just look good on paper.</p>
+        <div class="about-badges">
+          <span class="badge badge-cyan">Anna University Rank Holder</span>
+          <span class="badge badge-purple">Siemens Certified</span>
+          <span class="badge badge-orange">TANCAM Winner</span>
+          <span class="badge badge-cyan">FEA / CFD</span>
+          <span class="badge badge-purple">Robotics & Automation</span>
+          <span class="badge badge-orange">Tamil Nadu, India</span>
+        </div>
+        <div class="about-actions">
+          <a class="btn btn-primary" href="/Madhavan_S_CV.pdf" download target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download CV
+          </a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/madhavansankar" target="_blank" rel="noopener">View LinkedIn →</a>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-row">
+          <div class="about-card-icon">🎓</div>
+          <div class="about-card-row-text">
+            <p>Degree</p>
+            <span>BE (Hons.) Mech. Engg. — Robotics & Automation</span>
+          </div>
+        </div>
+        <div class="about-card-row">
+          <div class="about-card-icon">🏛️</div>
+          <div class="about-card-row-text">
+            <p>University</p>
+            <span>Anna University Regional Campus, Coimbatore</span>
+          </div>
+        </div>
+        <div class="about-card-row">
+          <div class="about-card-icon">📊</div>
+          <div class="about-card-row-text">
+            <p>CGPA / Grade</p>
+            <span>84% — First Class with Distinction</span>
+          </div>
+        </div>
+        <div class="about-card-row">
+          <div class="about-card-icon">📍</div>
+          <div class="about-card-row-text">
+            <p>Location</p>
+            <span>Tiruvallur, Tamil Nadu, India</span>
+          </div>
+        </div>
+        <div class="about-card-row">
+          <div class="about-card-icon">🗣️</div>
+          <div class="about-card-row-text">
+            <p>Languages</p>
+            <span>Tamil (Native) · English (Professional)</span>
+          </div>
+        </div>
+        <div class="about-card-row">
+          <div class="about-card-icon">📅</div>
+          <div class="about-card-row-text">
+            <p>Date of birth</p>
+            <span>10 January 2004</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">// 02 — Work experience</div>
+    <h2 class="section-title">Where I've made things work.</h2>
+    <div class="section-divider"></div>
+    <div class="timeline">
+
+      <div class="timeline-item timeline-current">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-title">Graduate Engineer Trainee (GET) <span class="current-tag">CURRENT</span></div>
+            <span class="exp-period">Nov 2025 – Present</span>
+          </div>
+          <div class="exp-company">Schwing Stetter India Pvt Ltd · Sriperumbudur</div>
+          <ul class="exp-bullets">
+            <li>Lead structural analysis and silo design projects using Solid Edge and STAAD Pro for client-ready compliance</li>
+            <li>Deliver accurate engineering drawings and technical documentation, consistently meeting project deadlines</li>
+            <li>Reduced revision cycles by ~20% through cross-functional design workflow optimization</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-title">Graduate Engineer Trainee — FAB Division</div>
+            <span class="exp-period">Jul – Sep 2025</span>
+          </div>
+          <div class="exp-company">Wheels India Limited · Sriperumbudur</div>
+          <ul class="exp-bullets">
+            <li>Performed fixture calibration and template design for heavy vehicle fabrication processes</li>
+            <li>Improved dimensional accuracy of fabrication fixtures through systematic template redesign</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-title">Engineering Intern — NVH Division</div>
+            <span class="exp-period">Feb – May 2025</span>
+          </div>
+          <div class="exp-company">Stellantis (FCA PCA Engineering India Pvt Ltd) · Tiruvallur</div>
+          <ul class="exp-bullets">
+            <li>Conducted road noise tests and validated NVH performance of production vehicles</li>
+            <li>Handled data acquisition, post-processing, and NVH report generation across multiple vehicle platforms</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-title">Industrial Intern — Process Optimization</div>
+            <span class="exp-period">May 2024</span>
+          </div>
+          <div class="exp-company">Krishca Steel Strapping Solutions Ltd · Mappedu, Tiruvallur</div>
+          <ul class="exp-bullets">
+            <li>Optimized steel machine operations to reduce material waste and drive measurable cost savings</li>
+            <li>Applied quality control, process documentation, and lean manufacturing principles</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="exp-card">
+          <div class="exp-header">
+            <div class="exp-title">Industrial Intern — NDT</div>
+            <span class="exp-period">Jul 2023</span>
+          </div>
+          <div class="exp-company">MEC Groups · Coimbatore</div>
+          <ul class="exp-bullets">
+            <li>Performed Non-Destructive Testing using Visual Inspection, Ultrasonic Testing (UT), and Magnetic Particle Testing (MT)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">// 03 — Projects</div>
+    <h2 class="section-title">Engineering in action.</h2>
+    <div class="section-divider"></div>
+    <!-- Horizontal scroll showcase -->
+    <div class="showcase" id="showcase">
+      <div class="showcase-pin">
+        <div class="showcase-header">
+          <div class="section-label">// Visual reel</div>
+          <h3 class="section-title" style="font-size:clamp(1.6rem,3.5vw,2.4rem);margin:.25rem 0 0;">Scroll through the build log.</h3>
+        </div>
+        <div class="showcase-track" id="showcaseTrack">
+          <figure class="showcase-card"><img loading="lazy" src="/projects/p1.png" alt="Magnus Effect HAWT — CFD wall shear"><figcaption class="showcase-caption">CFD — Magnus Effect HAWT</figcaption></figure>
+          <figure class="showcase-card"><img loading="lazy" src="/projects/p2.png" alt="Magnus turbine prototype"><figcaption class="showcase-caption">Prototype — Magnus Turbine</figcaption></figure>
+          <figure class="showcase-card"><img loading="lazy" src="/projects/p3.png" alt="Magnus turbine CAD"><figcaption class="showcase-caption">CAD — Magnus Rotor</figcaption></figure>
+          <figure class="showcase-card"><img loading="lazy" src="/projects/p4.png" alt="Mecanum wheel robotic arm CAD"><figcaption class="showcase-caption">CAD — Mecanum Robotic Arm</figcaption></figure>
+          <figure class="showcase-card"><img loading="lazy" src="/projects/p7.png" alt="Replaceable toothbrush head"><figcaption class="showcase-caption">Design — Replaceable Toothbrush Head</figcaption></figure>
+          <figure class="showcase-card"><img loading="lazy" src="/projects/p8.png" alt="Replaceable toothbrush handle"><figcaption class="showcase-caption">Design — Toothbrush Handle</figcaption></figure>
+          <figure class="showcase-card"><img loading="lazy" src="/projects/p9.jpg" alt="Structural platform CAD"><figcaption class="showcase-caption">Structure — Platform Assembly</figcaption></figure>
+          <figure class="showcase-card"><img loading="lazy" src="/projects/p10.jpg" alt="Krishca steel silo"><figcaption class="showcase-caption">Industry — Krishca Silo</figcaption></figure>
+          <figure class="showcase-card"><img loading="lazy" src="/projects/p5.png" alt="Stellantis NVH analysis"><figcaption class="showcase-caption">NVH — Stellantis Driver Response</figcaption></figure>
+          <figure class="showcase-card"><img loading="lazy" src="/projects/p6.png" alt="AR Unity world build"><figcaption class="showcase-caption">AR — Unity World Build</figcaption></figure>
+        </div>
+        <div class="showcase-progress"><div class="showcase-progress-bar" id="showcaseBar"></div></div>
+      </div>
+    </div>
+    <div class="projects-hierarchy">
+
+      <div class="project-category open">
+        <button class="project-category-header" type="button">
+          <div class="project-category-head-left">
+            <div class="project-category-icon">🛠️</div>
+            <div>
+              <div class="project-category-title">CAD / CAM / CAE Projects</div>
+              <div class="project-category-desc">Design, simulation, and manufacturing using advanced CAD tools</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;">
+            <span class="project-category-count">03</span>
+            <svg class="project-category-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </button>
+        <div class="project-category-items">
+          <div class="project-item">
+            <div class="project-item-title">CAD Drone Design & Assembly — Fusion 360</div>
+            <p class="project-item-desc">Complete drone design from concept to assembly with detailed engineering drawings and simulations.</p>
+            <div class="project-item-meta">
+              <span class="project-tag">Fusion 360</span><span class="project-tag">3D Modeling</span><span class="project-tag">Assembly</span>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-item-title">CAM — NC & Tool Path Creation in Fusion 360</div>
+            <p class="project-item-desc">Advanced CAM programming for CNC machining with optimized tool paths and manufacturing strategies.</p>
+            <div class="project-item-meta">
+              <span class="project-tag">Fusion 360</span><span class="project-tag">CNC</span><span class="project-tag">Tool Path</span>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-item-title">CAD-Based Line Follower Robot</div>
+            <p class="project-item-desc">Design and development of an autonomous line following robot with custom mechanical components.</p>
+            <div class="project-item-meta">
+              <a class="project-item-link" href="https://github.com/MadhavanSankar10/Mecanum-Wheel-Robotic-Arm" target="_blank" rel="noopener">GitHub ↗</a>
+              <span class="project-tag">CAD</span><span class="project-tag">Robotics</span><span class="project-tag">Automation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-category">
+        <button class="project-category-header" type="button">
+          <div class="project-category-head-left">
+            <div class="project-category-icon">🎓</div>
+            <div>
+              <div class="project-category-title">Academic Projects</div>
+              <div class="project-category-desc">University and research projects across engineering domains</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;">
+            <span class="project-category-count">04</span>
+            <svg class="project-category-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </button>
+        <div class="project-category-items">
+          <div class="project-item">
+            <div class="project-item-title">Magnus Effect Wind Turbine — Final Year Project</div>
+            <p class="project-item-desc">Designed and simulated a HAWT leveraging Magnus Effect principles in NX & ANSYS Fluent. Performed dynamic CFD analysis to optimize aerodynamic efficiency, then fabricated and tested the prototype.</p>
+            <div class="project-item-meta">
+              <a class="project-item-link" href="https://github.com/MadhavanSankar10/MAGNUS-EFFECT-HAWT" target="_blank" rel="noopener">GitHub ↗</a>
+              <span class="project-tag">NX</span><span class="project-tag">ANSYS Fluent</span><span class="project-tag">CFD</span>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-item-title">Mecanum Wheel Robotic Arm</div>
+            <p class="project-item-desc">Optimized mechanical components and assembly layouts in CAD for a multi-directional holonomic robotic platform.</p>
+            <div class="project-item-meta">
+              <a class="project-item-link" href="https://github.com/MadhavanSankar10/Mecanum-Wheel-Robotic-Arm" target="_blank" rel="noopener">GitHub ↗</a>
+              <span class="project-tag">CAD</span><span class="project-tag">Robotics</span>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-item-title">Symposium Design Lead — Forsch 23 & 25</div>
+            <p class="project-item-desc">Led all visual design for Anna University's Mechanical Symposium — posters, logos, branding, and team coordination across two editions.</p>
+            <div class="project-item-meta">
+              <span class="project-tag">Leadership</span><span class="project-tag">Branding</span><span class="project-tag">Design Coord.</span>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-item-title">Arduino Servo Motor Control — Tinkercad Simulation</div>
+            <p class="project-item-desc">Simulation and programming of servo motor control systems using the Arduino platform.</p>
+            <div class="project-item-meta">
+              <span class="project-tag">Arduino</span><span class="project-tag">Tinkercad</span><span class="project-tag">Embedded</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-category">
+        <button class="project-category-header" type="button">
+          <div class="project-category-head-left">
+            <div class="project-category-icon">💡</div>
+            <div>
+              <div class="project-category-title">Innovative Projects</div>
+              <div class="project-category-desc">Creative solutions addressing real-world problems</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;">
+            <span class="project-category-count">03</span>
+            <svg class="project-category-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </button>
+        <div class="project-category-items">
+          <div class="project-item">
+            <div class="project-item-title">Replaceable Head Toothbrush</div>
+            <p class="project-item-desc">Sustainable product design — a toothbrush with replaceable head to minimize plastic waste. Explored material science, lifecycle analysis, and user ergonomics.</p>
+            <div class="project-item-meta">
+              <a class="project-item-link" href="https://github.com/MadhavanSankar10/Replaceable-Toothbrush" target="_blank" rel="noopener">GitHub ↗</a>
+              <span class="project-tag">Sustainable Design</span><span class="project-tag">Product Design</span>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-item-title">Hybrid Robot — SCARA & Delta</div>
+            <p class="project-item-desc">Development of a hybrid robotic system combining SCARA and Delta robot configurations for flexible automation.</p>
+            <div class="project-item-meta">
+              <span class="project-tag">Robotics</span><span class="project-tag">Kinematics</span><span class="project-tag">Hybrid Systems</span>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-item-title">AR Project — QR & Plane Detection</div>
+            <p class="project-item-desc">Augmented reality application with QR code scanning and plane detection capabilities for mobile.</p>
+            <div class="project-item-meta">
+              <a class="project-item-link" href="https://github.com/MadhavanSankar10/AR" target="_blank" rel="noopener">GitHub ↗</a>
+              <span class="project-tag">AR</span><span class="project-tag">Computer Vision</span><span class="project-tag">Mobile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-category">
+        <button class="project-category-header" type="button">
+          <div class="project-category-head-left">
+            <div class="project-category-icon">🏭</div>
+            <div>
+              <div class="project-category-title">Internship & Industry Projects</div>
+              <div class="project-category-desc">Real-world industry projects from professional roles</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;">
+            <span class="project-category-count">03</span>
+            <svg class="project-category-chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </button>
+        <div class="project-category-items">
+          <div class="project-item">
+            <div class="project-item-title">Stellantis (FCA) — NVH Validation</div>
+            <p class="project-item-desc">Conducted road noise tests and validated NVH performance of production vehicles. Handled data acquisition, post-processing, and NVH reports across multiple platforms.</p>
+            <div class="project-item-meta">
+              <a class="project-item-link" href="https://github.com/MadhavanSankar10/stellantis-project" target="_blank" rel="noopener">GitHub ↗</a>
+              <span class="project-tag">NVH</span><span class="project-tag">Automotive</span><span class="project-tag">Data Acquisition</span>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-item-title">Krishca Steel Strap Solutions — Process Optimization</div>
+            <p class="project-item-desc">Steel industry project: strap solution design and manufacturing process enhancement focused on waste reduction and quality control.</p>
+            <div class="project-item-meta">
+              <span class="project-tag">Manufacturing</span><span class="project-tag">Process Design</span><span class="project-tag">Quality Control</span>
+            </div>
+          </div>
+          <div class="project-item">
+            <div class="project-item-title">Combat Helmet — TANCAM Award</div>
+            <p class="project-item-desc">Surface-modelled a multifunctional combat helmet with camera mount, thermal vision integration, magnetic-lock mask, and internal airbag safety system. Recognized at TANCAM.</p>
+            <div class="project-item-meta">
+              <span class="project-tag">Surface Modelling</span><span class="project-tag">Solid Edge</span><span class="project-tag">TANCAM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">// 04 — Skills & tools</div>
+    <h2 class="section-title">My engineering stack.</h2>
+    <div class="section-divider"></div>
+    <div class="skills-grid">
+
+      <div class="skill-cat reveal">
+        <div class="skill-cat-title">CAD / Modelling</div>
+        <div class="skill-pill-group">
+          <div class="skill-pill">
+            <span class="skill-pill-name">NX (Siemens)</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="92"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">Solid Edge</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">AutoCAD</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">Fusion 360</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="72"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-cat reveal">
+        <div class="skill-cat-title">Simulation / Analysis</div>
+        <div class="skill-pill-group">
+          <div class="skill-pill">
+            <span class="skill-pill-name">ANSYS Fluent</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="82"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">STAAD Pro</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="78"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">FEA (Structural)</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">NVH Validation</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="75"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-cat reveal">
+        <div class="skill-cat-title">Manufacturing</div>
+        <div class="skill-pill-group">
+          <div class="skill-pill">
+            <span class="skill-pill-name">NX CAM</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="68"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">Additive Mfg.</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="74"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">NDT Methods</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="70"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">Lean Principles</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="65"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-cat reveal">
+        <div class="skill-cat-title">Soft Skills</div>
+        <div class="skill-pill-group">
+          <div class="skill-pill">
+            <span class="skill-pill-name">Problem-solving</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="95"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">Leadership</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">Communication</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-pill">
+            <span class="skill-pill-name">Teamwork</span>
+            <div class="skill-bar"><div class="skill-bar-fill" data-width="92"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Certs -->
+<section id="certs">
+  <div class="container">
+    <div class="section-label">// 05 — Certifications</div>
+    <h2 class="section-title">Credentials that count.</h2>
+    <div class="section-divider"></div>
+    <div class="certs-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon">🏅</div>
+        <div>
+          <div class="cert-name">Siemens Solid Edge — Associate Level</div>
+          <div class="cert-issuer">Siemens Digital Industries</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🥇</div>
+        <div>
+          <div class="cert-name">Siemens Solid Edge — Professional Level</div>
+          <div class="cert-issuer">Siemens Digital Industries</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🎓</div>
+        <div>
+          <div class="cert-name">CAD & Digital Manufacturing</div>
+          <div class="cert-issuer">Autodesk · Coursera</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">🏆</div>
+        <div>
+          <div class="cert-name">Surface Modelling — TANCAM Award</div>
+          <div class="cert-issuer">TANCAM Competition</div>
+        </div>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">⭐</div>
+        <div>
+          <div class="cert-name">University Rank Holder</div>
+          <div class="cert-issuer">Anna University · CGPA 84%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">// 06 — Contact</div>
+    <h2 class="section-title">Let's build something together.</h2>
+    <div class="section-divider" style="margin-left: auto; margin-right: auto;"></div>
+    <div class="contact-card reveal">
+      <p style="color: var(--muted); font-size: 1rem; line-height: 1.7;">
+        I'm actively exploring new opportunities in <strong style="color: var(--text);">mechanical design, structural analysis, CAE/CAD roles, and robotics engineering</strong>. If you're looking for someone who brings precision, initiative, and a rank-holder work ethic — let's talk.
+      </p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:madhava2004s@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          madhava2004s@gmail.com
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/madhavansankar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a class="contact-link" href="https://github.com/MadhavanSankar10" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a class="contact-link" href="tel:+916369356534">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.1a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 6369356534
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built with precision · Madhavan S · 2025 · Tamil Nadu, India</p>
+</footer>
+
+<script>
+  // Particles
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      animation-duration: ${6 + Math.random() * 12}s;
+      animation-delay: ${Math.random() * 8}s;
+      opacity: 0;
+    `;
+    container.appendChild(p);
+  }
+
+  // Intersection observer for reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+          // Animate skill bars
+          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width + '%';
+          });
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal, .timeline-item, .project-category').forEach(el => observer.observe(el));
+
+  // Project category accordion
+  document.querySelectorAll('.project-category-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.parentElement.classList.toggle('open');
+    });
+  });
+
+  // Smooth nav highlighting
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => {
+          a.style.color = a.getAttribute('href') === '#' + entry.target.id ? 'var(--accent)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => navObs.observe(s));
+
+  // Horizontal scroll showcase
+  (function(){
+    const showcase = document.getElementById('showcase');
+    const pin = showcase && showcase.querySelector('.showcase-pin');
+    const track = document.getElementById('showcaseTrack');
+    const bar = document.getElementById('showcaseBar');
+    if (!showcase || !track || !pin) return;
+    const cards = track.querySelectorAll('.showcase-card');
+
+    let ticking = false;
+    function update(){
+      ticking = false;
+      const maxScroll = pin.scrollWidth - pin.clientWidth;
+      const progress = maxScroll > 0 ? pin.scrollLeft / maxScroll : 0;
+      if (bar) bar.style.width = (progress * 100) + '%';
+      const vw = pin.clientWidth;
+      const pinLeft = pin.getBoundingClientRect().left;
+      cards.forEach(card => {
+        const r = card.getBoundingClientRect();
+        const center = (r.left - pinLeft) + r.width / 2;
+        if (center > -r.width * 0.2 && center < vw + r.width * 0.2) card.classList.add('in');
+        const dist = Math.abs(center - vw / 2) / vw;
+        const scale = Math.max(0.85, 1 - dist * 0.18);
+        const img = card.querySelector('img');
+        if (img) img.style.transform = 'scale(' + (scale + 0.05) + ')';
+      });
+    }
+    function onScroll(){
+      if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }
+    pin.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    // wheel: convert vertical wheel inside section to horizontal scroll only when there's room
+    pin.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+      const maxScroll = pin.scrollWidth - pin.clientWidth;
+      const atStart = pin.scrollLeft <= 0 && e.deltaY < 0;
+      const atEnd = pin.scrollLeft >= maxScroll && e.deltaY > 0;
+      if (atStart || atEnd) return; // let page scroll
+      e.preventDefault();
+      pin.scrollLeft += e.deltaY;
+    }, { passive: false });
+    update();
+  })();
+</script>
+</body>
+</html>
